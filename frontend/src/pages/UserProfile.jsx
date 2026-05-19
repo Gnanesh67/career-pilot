@@ -12,6 +12,7 @@ import { userProfileApi } from '../services/api'
 import Button from '../components/Button'
 import Input from '../components/Input'
 import { SkeletonProfile } from '../components/ui/Skeleton'
+import AnalysisSkeleton from '../components/github/AnalysisSkeleton'
 
 const AVATAR_GRADIENTS = [
   'from-indigo-500 to-purple-600',
@@ -44,6 +45,8 @@ export default function UserProfile() {
   const [loading, setLoading] = useState(true)
   const [editing, setEditing] = useState(false)
   const [saving, setSaving] = useState(false)
+  // When true the GitHub repository analysis skeleton will show
+  const [isRepoAnalyzing, setIsRepoAnalyzing] = useState(false)
   const [form, setForm] = useState({
     displayName: '',
     bio: '',
@@ -365,6 +368,13 @@ export default function UserProfile() {
                   )}
                 </div>
               )}
+
+          {/* Repository analysis (loading) - render skeleton when analysis is in progress */}
+          {isRepoAnalyzing && (
+            <motion.div variants={itemVariants} className="mt-6">
+              <AnalysisSkeleton />
+            </motion.div>
+          )}
           </motion.div>
 
           {/* Skills */}
