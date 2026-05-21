@@ -325,11 +325,11 @@ git commit -m "feat(portfolio): add minimal dark portfolio theme"
 
 Your PR should include:
 
+- Use the repository PR template and complete all relevant sections
 - Theme screenshots
 - `preview.png`
 - Responsive testing confirmation
 - Short explanation of the design
-
 ---
 
 # ✅ Code Review Criteria
