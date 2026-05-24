@@ -505,10 +505,13 @@ export const jobTrackerApi = {
   // Update job application status
   async updateStatus(jobId, status, notes = '') {
     const headers = await getAuthHeaders()
+    const body = { status };
+    if (notes) body.notes = notes;
+    
     const response = await fetch(`${API_BASE}/job-tracker/${jobId}`, {
       method: 'PUT',
       headers,
-      body: JSON.stringify({ status, notes })
+      body: JSON.stringify(body)
     })
     return handleResponse(response)
   },
