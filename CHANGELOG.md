@@ -1,3 +1,10 @@
+## [1.54.1](https://github.com/anurag3407/career-pilot/compare/v1.54.0...v1.54.1) (2026-05-28)
+
+
+### Bug Fixes
+
+* remove unused StockTicker import and leftover git merge conflict text in App.jsx (fixes [#2285](https://github.com/anurag3407/career-pilot/issues/2285)) ([b03cf28](https://github.com/anurag3407/career-pilot/commit/b03cf2811cc2d623b393a39273db3aecbe1ead39))
+
 # [1.54.0](https://github.com/anurag3407/career-pilot/compare/v1.53.0...v1.54.0) (2026-05-28)
 
 
