@@ -3,7 +3,6 @@
  * Implements lazy loading for improved performance
  */
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import StockTicker from "./components/portfolio/templates/Finance_Corporate/StockTicker";
 import Deployments from './pages/Deployments'
 import TemplateGallery from "./pages/TemplateGallery";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
@@ -175,11 +174,7 @@ function AppRoutes() {
 
         {/* Template Gallery Route (Registered at /templates) */}
         <Route path="/templates" element={<TemplateGallery />} />
- feat/liquid-glass-portfolio
-        
-
         <Route path="/templates/chatbot" element={<ChatbotPortfolio />} />
-main
         <Route path="/templates/day-night-cycle" element={<DayNightCycle />} />
         {/* Core Protected Routes */}
         <Route 
