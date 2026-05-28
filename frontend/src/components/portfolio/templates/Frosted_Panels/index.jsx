@@ -347,7 +347,7 @@ export default function FrostedPanels() {
               WebkitTextStroke: '2px rgba(27, 20, 53, 0.35)',
               WebkitTextFillColor: 'transparent',
             }}
-          >``
+          >
             {data.personal.name}
           </span>
         </div>
