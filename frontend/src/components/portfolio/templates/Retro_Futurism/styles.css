@@ -179,8 +179,25 @@
   .tree-sway-right {
     animation-duration: 9s;
   }
+}
 
-  .tree-sway-right {
-    transform: translateX(-0.5rem);
+.tree-right-offset {
+  transform: translateX(-0.5rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .synth-sun::after,
+  .tree-sway-left,
+  .tree-sway-right,
+  .purple-dust-1,
+  .purple-dust-2,
+  .purple-dust-3 {
+    animation: none !important;
+  }
+
+  .hero-road-inner {
+    animation-duration: 8s !important;
+    animation-timing-function: linear !important;
+    animation-iteration-count: infinite !important;
   }
 }
