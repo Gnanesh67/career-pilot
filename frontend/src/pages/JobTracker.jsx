@@ -263,9 +263,10 @@ const JobTracker = () => {
     );
     
     // Optimistic UI update
+    const updatedStats = calculateJobStats(updatedJobs);
     setTrackedJobs(updatedJobs);
-    setStats(calculateJobStats(updatedJobs));
-    persistTrackerSnapshot(updatedJobs, calculateJobStats(updatedJobs));
+    setStats(updatedStats);
+    persistTrackerSnapshot(updatedJobs, updatedStats);
 
     // Backend update
     try {
@@ -278,8 +279,10 @@ const JobTracker = () => {
         queueOfflineStatusChange(draggableId, newStatus, previousJobs);
       } else {
         toast.error("Failed to update status");
+        const previousStats = calculateJobStats(previousJobs);
         setTrackedJobs(previousJobs);
-        setStats(calculateJobStats(previousJobs));
+        setStats(previousStats);
+        persistTrackerSnapshot(previousJobs, previousStats);
       }
     }
   };

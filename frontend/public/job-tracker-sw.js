@@ -1,5 +1,34 @@
 const CACHE_NAME = "career-pilot-app-shell-v1";
 const APP_SHELL_URLS = ["/", "/index.html"];
+const STATIC_ASSET_EXTENSIONS = [
+  ".css",
+  ".gif",
+  ".html",
+  ".ico",
+  ".jpg",
+  ".jpeg",
+  ".js",
+  ".json",
+  ".png",
+  ".svg",
+  ".webp",
+  ".woff",
+  ".woff2",
+];
+
+const isCacheableStaticRequest = (request, url) => {
+  if (request.method !== "GET" || url.origin !== self.location.origin) {
+    return false;
+  }
+
+  if (url.pathname.startsWith("/api") || request.headers.get("authorization")) {
+    return false;
+  }
+
+  return STATIC_ASSET_EXTENSIONS.some((extension) =>
+    url.pathname.endsWith(extension),
+  );
+};
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -29,7 +58,7 @@ self.addEventListener("fetch", (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  if (request.method !== "GET" || url.pathname.startsWith("/api")) {
+  if (request.method !== "GET" || url.origin !== self.location.origin) {
     return;
   }
 
@@ -37,6 +66,10 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       fetch(request).catch(() => caches.match("/index.html")),
     );
+    return;
+  }
+
+  if (!isCacheableStaticRequest(request, url)) {
     return;
   }
 
@@ -50,7 +83,11 @@ self.addEventListener("fetch", (event) => {
         }
 
         const responseToCache = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(request, responseToCache));
+        event.waitUntil(
+          caches
+            .open(CACHE_NAME)
+            .then((cache) => cache.put(request, responseToCache)),
+        );
         return response;
       });
     }),
