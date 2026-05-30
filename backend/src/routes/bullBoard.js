@@ -1,5 +1,5 @@
 import express from 'express';
-import { timingSafeEqual } from 'crypto';
+import { createHash, timingSafeEqual } from 'crypto';
 import { Queue } from 'bullmq';
 import { createBullBoard } from '@bull-board/api';
 import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
@@ -14,14 +14,9 @@ const QUEUE_NAMES = ['job-alerts', 'weekly-digests'];
 const isBullBoardEnabled = () => process.env.BULL_BOARD_ENABLED === 'true';
 
 const safeCompare = (value, expected) => {
-  const valueBuffer = Buffer.from(value || '');
-  const expectedBuffer = Buffer.from(expected || '');
+  const hash = (input) => createHash('sha256').update(input || '').digest();
 
-  if (valueBuffer.length !== expectedBuffer.length) {
-    return false;
-  }
-
-  return timingSafeEqual(valueBuffer, expectedBuffer);
+  return timingSafeEqual(hash(value), hash(expected));
 };
 
 const bullBoardBasicAuth = (req, res, next) => {
