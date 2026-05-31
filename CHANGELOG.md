@@ -1,3 +1,10 @@
+# [1.110.0](https://github.com/anurag3407/career-pilot/compare/v1.109.0...v1.110.0) (2026-05-31)
+
+
+### Features
+
+* add Open Graph and Twitter meta tags for SEO and social sharing ([e0a4b6f](https://github.com/anurag3407/career-pilot/commit/e0a4b6f87bc57202e767183a31d497536e1c237e))
+
 # [1.109.0](https://github.com/anurag3407/career-pilot/compare/v1.108.0...v1.109.0) (2026-05-31)
 
 
