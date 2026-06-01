@@ -378,13 +378,14 @@ export const templates = [
     "id": "Color_Block",
     "title": "Color Block",
     "category": "Portfolio",
-    "colorScheme": "Dark",
-    "layout": "Grid",
-    "author": "System",
-    "views": 1031,
-    "rating": 4.5,
+    "colorScheme": "Colorful",
+    "layout": "Interactive",
+    "author": "Advik Divekar",
+    "views": 2650,
+    "rating": 4.9,
     "image": "/template-previews/Color_Block.png",
-    "createdAt": "2026-05-01"
+    "createdAt": "2026-05-31",
+    "isComplete": true
   },
   {
     "id": "Comic_Book",

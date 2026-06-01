@@ -99,7 +99,7 @@ import MemphisPop from './components/portfolio/templates/Memphis_Pop/index.jsx';
 import CassetteMixtape from './components/portfolio/templates/Cassette_Mixtape/index.jsx';
 import MagneticDock from './components/portfolio/templates/Magnetic_Dock/index.jsx';
 import Hero from './components/portfolio/templates/Magazine_Editorial/Hero';
-import SunsetWarm from './components/portfolio/templates/Sunset_Warm/index.jsx';
+import ColorBlock from './components/portfolio/templates/Color_Block/index.jsx';
 import TestSocialLinks from './pages/TestSocialLinks';
 
 function LoadingScreen({ label }) {
@@ -429,7 +429,7 @@ function AppRoutes() {
 
         {/* Catch-All Route */}
         <Route path="*" element={<NotFound />} />
-        <Route path="/templates/sunset-warm" element={<SunsetWarm />} />
+        <Route path="/templates/color-block" element={<ColorBlock />} />
       </Routes>
     </BrowserRouter>
   );
