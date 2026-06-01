@@ -478,7 +478,8 @@ const [hoveredCard, setHoveredCard] = useState(null);
         </div>
         <div className="overflow-hidden rounded-2xl border border-border">
           <MidnightGradient />
-</div>
+        </div>
+      </div>
       {/* Playing Cards Theme */}
       <div className="mt-12">
         <div className="mb-4 flex items-center gap-3 px-1">
@@ -583,6 +584,8 @@ const [hoveredCard, setHoveredCard] = useState(null);
         <div className="rounded-2xl border border-cyan-500/20"
           style={{ height: 640, overflowY: "auto", overflowX: "hidden", transform: "translate(0)", position: "relative" }}>
           <ChromaticGlitch />
+        </div>
+      </div>
       {/* Magnetic Dock — sandboxed fixed-nav frame */}
       <div className="mt-12">
         <div className="mb-4 flex items-center gap-3 px-1">
@@ -596,8 +599,6 @@ const [hoveredCard, setHoveredCard] = useState(null);
           <MagneticDock />
         </div>
       </div>
-
-    </div>
 
     </div>
   );
