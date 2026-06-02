@@ -1,3 +1,10 @@
+# [1.128.0](https://github.com/anurag3407/career-pilot/compare/v1.127.0...v1.128.0) (2026-06-02)
+
+
+### Features
+
+* implement semantic footer for portfolio starter template ([8e7993c](https://github.com/anurag3407/career-pilot/commit/8e7993c07cd51c7e665350f02f9413aeb994b9c0))
+
 # [1.127.0](https://github.com/anurag3407/career-pilot/compare/v1.126.1...v1.127.0) (2026-06-02)
 
 
