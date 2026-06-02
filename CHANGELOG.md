@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/advikdivekar/career-pilot-advik/compare/v1.3.0...v1.3.1) (2026-06-02)
+
+
+### Bug Fixes
+
+* mobile layout for High Fashion template - hamburger nav, stacked hero, responsive padding, lookbook overhaul ([0ef20f9](https://github.com/advikdivekar/career-pilot-advik/commit/0ef20f963e377aaf4107fff1024192437a11bfc2))
+
 # [1.3.0](https://github.com/advikdivekar/career-pilot-advik/compare/v1.2.0...v1.3.0) (2026-06-02)
 
 
