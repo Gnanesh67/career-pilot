@@ -28,7 +28,10 @@ function getKeywordsForRole(jobRole = '') {
 function deterministicKeywordAnalysis(resumeText, jobRole = '') {
   const keywords = getKeywordsForRole(jobRole);
 
-  if (keywords.length === 0) {
+  if (
+  keywords.length === 0 ||
+  typeof resumeText !== 'string'
+) {
     return {
       keywordCoverageScore: 0,
       foundKeywords: [],
@@ -125,8 +128,12 @@ Rules:
     );
 
     return {
-      keywordCoverageScore: Number(
-        parsed.keywordCoverageScore || 0
+      keywordCoverageScore: Math.min(
+        100,
+        Math.max(
+          0,
+          Number(parsed.keywordCoverageScore) || 0
+        )
       ),
       foundKeywords: Array.isArray(parsed.foundKeywords)
         ? parsed.foundKeywords
