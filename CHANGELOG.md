@@ -1,3 +1,11 @@
+# [1.151.0](https://github.com/anurag3407/career-pilot/compare/v1.150.0...v1.151.0) (2026-06-04)
+
+
+### Features
+
+* implement Low Poly Terrain portfolio template with animated day/night cycle ([9a4f5c4](https://github.com/anurag3407/career-pilot/commit/9a4f5c4c39dba4ebbc66ac3e58478abbafce9900)), closes [#1859](https://github.com/anurag3407/career-pilot/issues/1859)
+* implement Planetary Orbit portfolio template with solar system navigation ([6b02c2f](https://github.com/anurag3407/career-pilot/commit/6b02c2fe251c569a231cb807212ffa1918f76390)), closes [#1861](https://github.com/anurag3407/career-pilot/issues/1861)
+
 # [1.150.0](https://github.com/anurag3407/career-pilot/compare/v1.149.0...v1.150.0) (2026-06-04)
 
 
