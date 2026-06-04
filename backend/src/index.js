@@ -69,6 +69,7 @@ import {
   initializeDigestQueue,
   startDigestWorker
 } from './services/weeklyDigestService.js';
+import { validateEmailConfig } from './utils/emailConfig.js';
 
 // ============================================================================
 // Configuration validation - Check for required API keys
@@ -259,6 +260,16 @@ app.use((req, res) => {
 app.use(globalErrorHandler);
 const startServer = async () => {
   try {
+    // Fail fast in production when email is not configured; warn otherwise.
+    // Without this check, missing credentials surface only later as silent
+    // send failures.
+    const emailStatus = validateEmailConfig(process.env);
+    if (emailStatus.enabled) {
+      console.log(`📧 ${emailStatus.message}`);
+    } else {
+      console.warn(`⚠️ ${emailStatus.message}`);
+    }
+
     await connectDB();
 
     httpServer.listen(PORT, () => {
