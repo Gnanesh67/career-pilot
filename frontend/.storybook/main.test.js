@@ -1,10 +1,21 @@
 // frontend/.storybook/main.test.js
-// Unit tests for Visual Regression Testing Setup
-
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { visualRegressionUtils } from './main';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { visualRegressionUtils } from './test-utils.js';
 
 describe('Visual Regression Testing - Core Logic', () => {
+  let originalToken;
+
+  beforeEach(() => {
+    originalToken = process.env.CHROMATIC_PROJECT_TOKEN;
+  });
+
+  afterEach(() => {
+    if (originalToken === undefined) {
+      delete process.env.CHROMATIC_PROJECT_TOKEN;
+    } else {
+      process.env.CHROMATIC_PROJECT_TOKEN = originalToken;
+    }
+  });
 
   // Test 1: Token validation
   describe('validateChromaticToken', () => {
@@ -45,10 +56,16 @@ describe('Visual Regression Testing - Core Logic', () => {
         .rejects.toThrow('Test failed after 3 retries');
     });
 
-    it('should handle retries less than 1', async () => {
+    it('should throw RangeError when retries is 0', async () => {
       const mockTest = vi.fn().mockResolvedValue('success');
-      const result = await visualRegressionUtils.retryTest(mockTest, 0);
-      expect(result).toBe('success');
+      await expect(visualRegressionUtils.retryTest(mockTest, 0))
+        .rejects.toThrow('retries must be at least 1');
+    });
+
+    it('should throw RangeError when retries is negative', async () => {
+      const mockTest = vi.fn().mockResolvedValue('success');
+      await expect(visualRegressionUtils.retryTest(mockTest, -1))
+        .rejects.toThrow('retries must be at least 1');
     });
   });
 
