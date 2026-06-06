@@ -127,7 +127,7 @@ const JobTracker = () => {
       const data = await jobTrackerApi.getAll();
       const jobs = data.trackedJobs || [];
       setTrackedJobs(jobs);
-      persistTrackerSnapshot(jobs, stats || calculateJobStats(jobs));
+      persistTrackerSnapshot(jobs, calculateJobStats(jobs));
       setIsOffline(false);
     } catch (error) {
       console.error("Error fetching jobs:", error);
@@ -187,7 +187,7 @@ const JobTracker = () => {
     }
 
     const syncedIds = [];
-    const failedIds = [];
+    let failedCount = 0;
     let stoppedForNetwork = false;
 
     for (const update of queuedUpdates) {
@@ -200,19 +200,18 @@ const JobTracker = () => {
           stoppedForNetwork = true;
           break;
         }
-        failedIds.push(update.id);
+        failedCount += 1;
       }
     }
 
-    const removableIds = [...syncedIds, ...failedIds];
-    const remainingUpdates = removableIds.length
-      ? removeQueuedStatusUpdates(currentUserId, removableIds)
+    const remainingUpdates = syncedIds.length
+      ? removeQueuedStatusUpdates(currentUserId, syncedIds)
       : queuedUpdates;
 
     setPendingSyncCount(remainingUpdates.length);
 
-    if (failedIds.length) {
-      toast.error("Some offline updates could not be synced");
+    if (failedCount) {
+      toast.error("Some offline updates could not be synced and will be retried");
     } else if (syncedIds.length && !stoppedForNetwork) {
       toast.success("Offline Job Tracker changes synced", {
         id: "tracked-job-offline-sync",
