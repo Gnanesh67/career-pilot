@@ -48,6 +48,8 @@ export default function ResumeBuilder() {
   const [currentStep, setCurrentStep] = useState(0)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [targetRole, setTargetRole]   = useState('')
+  const [readabilityScore, setReadabilityScore] = useState(0)
+  const [claritySuggestions, setClaritySuggestions] = useState([])
 
   // ── form state ──────────────────────────────────────────────────────────────
   const [personal, setPersonal] = useState({
@@ -73,6 +75,35 @@ export default function ResumeBuilder() {
   const [missingKeywords, setMissingKeywords] = useState([])
   const [resumeVersions, setResumeVersions] = useState([])
   const [selectedVersion, setSelectedVersion] = useState(null)
+
+  useEffect(() => {
+  const content = [
+    personal.summary,
+    ...experience.map(e => e.description),
+    ...projects.map(p => p.description)
+  ].join(' ')
+
+  let score = 100
+  const suggestions = []
+
+  if (content.length < 100) {
+    score -= 20
+    suggestions.push("Add more descriptive content.")
+  }
+
+  if (content.includes("was") || content.includes("were")) {
+    score -= 10
+    suggestions.push("Reduce passive voice usage.")
+  }
+
+  if (!content.match(/developed|built|created|led|implemented/i)) {
+    score -= 15
+    suggestions.push("Use stronger action verbs.")
+  }
+
+  setReadabilityScore(Math.max(score, 0))
+  setClaritySuggestions(suggestions)
+}, [personal, experience, projects])
 
   useEffect(() => {
   const keywords = [
@@ -952,6 +983,39 @@ useEffect(() => {
     </div>
   </div>
 )}
+
+<div className="mb-6 p-4 rounded-xl border border-border bg-background/50">
+  <div className="flex justify-between items-center mb-2">
+    <h3 className="font-semibold">
+      Resume Readability Score
+    </h3>
+
+    <span className="text-primary font-bold">
+      {readabilityScore}/100
+    </span>
+  </div>
+
+  <div className="w-full bg-secondary rounded-full h-3">
+    <div
+      className="bg-primary h-3 rounded-full transition-all"
+      style={{ width: `${readabilityScore}%` }}
+    />
+  </div>
+
+  {claritySuggestions.length > 0 && (
+    <div className="mt-4">
+      <h4 className="font-medium mb-2">
+        Suggestions
+      </h4>
+
+      <ul className="list-disc list-inside text-sm text-muted-foreground">
+        {claritySuggestions.map((tip, index) => (
+          <li key={index}>{tip}</li>
+        ))}
+      </ul>
+    </div>
+  )}
+</div>
 
 <div className="bg-background border border-border rounded-xl p-6 h-[500px] overflow-y-auto font-mono text-sm whitespace-pre-wrap">
   {generateMarkdown()}
