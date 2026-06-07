@@ -110,6 +110,7 @@ import NeonCityscape from './components/portfolio/templates/Neon_Cityscape/index
 import PlanetaryOrbit from './components/portfolio/templates/Planetary_Orbit/index.jsx';
 import LowPolyTerrain from './components/portfolio/templates/Low_Poly_Terrain/index.jsx';
 import HighFashion from './components/portfolio/templates/High_Fashion/index.jsx';
+import TypographicWheatpastePosterWall from './components/portfolio/templates/Typographic_Wheatpaste_Poster_Wall/index.jsx';
 import DigitalManifestoScroll from './components/portfolio/templates/Digital_Manifesto_Scroll/index.jsx';
 import TestSocialLinks from './pages/TestSocialLinks';
 
@@ -271,6 +272,7 @@ function AppRoutes() {
         <Route path="/templates/planetary-orbit" element={<PlanetaryOrbit />} />
         <Route path="/templates/low-poly-terrain" element={<LowPolyTerrain />} />
         <Route path="/templates/high-fashion" element={<HighFashion />} />
+        <Route path="/templates/typographic-wheatpaste-poster-wall" element={<TypographicWheatpastePosterWall />} />
         <Route path="/templates/digital-manifesto-scroll" element={<DigitalManifestoScroll />} />
 
         <Route path="/templates/chatbot" element={<ChatbotPortfolio />} /> 
