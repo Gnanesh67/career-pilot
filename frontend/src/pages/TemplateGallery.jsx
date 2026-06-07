@@ -12,6 +12,7 @@ import WeatherMood from '../components/portfolio/templates/Weather_Mood/index';
 import SwissTypography from '../components/portfolio/templates/Swiss_Typography/index';
 import DesertDunes from '../components/portfolio/templates/Desert_Dunes/index';
 import { templates } from '../data/templates';
+import { PortfolioProvider } from '../context/PortfolioContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Moon,
@@ -171,7 +172,9 @@ const TemplateHeroPreview = ({ templateId, portfolioData }) => {
   if (!templateId) return null;
   return (
     <Suspense fallback={<div className="w-full h-full bg-muted/50" />}>
-      <Component portfolioData={portfolioData} />
+      <PortfolioProvider portfolioData={portfolioData}>
+        <Component portfolioData={portfolioData} />
+      </PortfolioProvider>
     </Suspense>
   );
 };
@@ -366,7 +369,11 @@ const TemplatePreviewModal = ({
             </div>
           }
         >
-          {Component && <Component portfolioData={portfolioData} />}
+          {Component && (
+            <PortfolioProvider portfolioData={portfolioData}>
+              <Component portfolioData={portfolioData} />
+            </PortfolioProvider>
+          )}
         </Suspense>
       </div>
     </div>

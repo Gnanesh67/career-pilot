@@ -229,87 +229,91 @@ useEffect(() => {
 
     return (
         <Sidebar open={open} setOpen={setOpen}>
-            <SidebarBody className="justify-between gap-6 bg-card border-r border-border">
-                <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide">
+            <SidebarBody className="justify-between gap-4 bg-card border-r border-border overflow-hidden">
+                <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
                     <Logo />
                     <SidebarDivider />
-                    <div className="flex flex-col gap-1">
-                        {navLinks.map((link) => (
-                            <SidebarLink
-                                key={link.href}
-                                link={link}
-                                onClick={() => setOpen(false)}
-                                className="text-muted-foreground hover:text-foreground hover:bg-muted font-semibold transition-all rounded-xl"
-                            />
-                        ))}
+                    <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden pr-1">
+                        <div className="flex flex-col gap-1">
+                            {navLinks.map((link) => (
+                                <SidebarLink
+                                    key={link.href}
+                                    link={link}
+                                    onClick={() => setOpen(false)}
+                                    className="text-muted-foreground hover:text-foreground hover:bg-muted font-semibold transition-all rounded-xl"
+                                />
+                            ))}
+                        </div>
+                        {/* AI Tools Collapsible */}
+                        <div className="mt-2">
+                            <button
+                                onClick={() => setOpenAI(!openAI)}
+                                className="flex items-center justify-between w-full px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted font-semibold transition-all"
+                            >
+                                <div className="flex items-center gap-3">
+                                    <Brain className="w-5 h-5 shrink-0" />
+                                    <span>AI Tools</span>
+                                </div>
+
+                                <ChevronDown
+                                    className={cn(
+                                        "w-4 h-4 transition-transform duration-300",
+                                        openAI && "rotate-180"
+                                    )}
+                                />
+                            </button>
+
+                            <motion.div
+                                initial={false}
+                                animate={{
+                                    height: openAI ? "auto" : 0,
+                                    opacity: openAI ? 1 : 0,
+                                }}
+                                transition={{ duration: 0.3 }}
+                                className="overflow-hidden ml-4 flex flex-col gap-1"
+                            >
+                                <SidebarLink
+                                    link={{
+                                        label: "Skill Gap Analyzer",
+                                        href: "/skill-gap",
+                                        icon: <Brain className="w-4 h-4 shrink-0" />,
+                                    }}
+                                    onClick={() => setOpen(false)}
+                                />
+
+                                <SidebarLink
+                                    link={{
+                                        label: "Career Trajectory",
+                                        href: "/career-path",
+                                        icon: <Brain className="w-4 h-4 shrink-0" />,
+                                    }}
+                                    onClick={() => setOpen(false)}
+                                />
+
+                                <SidebarLink
+                                    link={{
+                                        label: "Salary Estimator",
+                                        href: "/salary-estimate",
+                                        icon: <Brain className="w-4 h-4 shrink-0" />,
+                                    }}
+                                    onClick={() => setOpen(false)}
+                                />
+
+                                <SidebarLink
+                                    link={{
+                                        label: "Project Visualizer",
+                                        href: "/project-visualizer",
+                                        icon: <GitMerge className="w-4 h-4 shrink-0" />,
+                                    }}
+                                    onClick={() => setOpen(false)}
+                                />
+                            </motion.div>
+                        </div>
                     </div>
-                     {/* AI Tools Collapsible */}
-<div className="mt-2">
-    <button
-        onClick={() => setOpenAI(!openAI)}
-        className="flex items-center justify-between w-full px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted font-semibold transition-all"
-    >
-        <div className="flex items-center gap-3">
-            <Brain className="w-5 h-5 shrink-0" />
-            <span>AI Tools</span>
-        </div>
-
-        <ChevronDown
-            className={cn(
-                "w-4 h-4 transition-transform duration-300",
-                openAI && "rotate-180"
-            )}
-        />
-    </button>
-
-    <motion.div
-        initial={false}
-        animate={{
-            height: openAI ? "auto" : 0,
-            opacity: openAI ? 1 : 0,
-        }}
-        transition={{ duration: 0.3 }}
-        className="overflow-hidden ml-4 flex flex-col gap-1"
-    >
-        <SidebarLink
-            link={{
-                label: "Skill Gap Analyzer",
-                href: "/skill-gap",
-                icon: <Brain className="w-4 h-4 shrink-0" />,
-            }}
-            onClick={() => setOpen(false)}
-        />
-
-        <SidebarLink
-            link={{
-                label: "Career Trajectory",
-                href: "/career-path",
-                icon: <Brain className="w-4 h-4 shrink-0" />,
-            }}
-            onClick={() => setOpen(false)}
-        />
-
-        <SidebarLink
-            link={{
-                label: "Salary Estimator",
-                href: "/salary-estimate",
-                icon: <Brain className="w-4 h-4 shrink-0" />,
-            }}
-            onClick={() => setOpen(false)}
-        />
-
-        <SidebarLink
-            link={{
-                label: "Project Visualizer",
-                href: "/project-visualizer",
-                icon: <GitMerge className="w-4 h-4 shrink-0" />,
-            }}
-            onClick={() => setOpen(false)}
-        />
-    </motion.div>
-</div>
                 </div>
-                <UserSection />
+                <div className="shrink-0">
+                    <UserSection />
+                </div>
             </SidebarBody>
         </Sidebar>
     );
