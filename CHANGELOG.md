@@ -1,3 +1,10 @@
+# [1.189.0](https://github.com/anurag3407/career-pilot/compare/v1.188.0...v1.189.0) (2026-06-08)
+
+
+### Features
+
+* add smart resume content consistency checker [#3351](https://github.com/anurag3407/career-pilot/issues/3351) ([85ce056](https://github.com/anurag3407/career-pilot/commit/85ce056ee40b6b6e5b2ad375aa53b322c7595e3c))
+
 # [1.188.0](https://github.com/anurag3407/career-pilot/compare/v1.187.1...v1.188.0) (2026-06-08)
 
 
