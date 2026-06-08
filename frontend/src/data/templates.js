@@ -2553,5 +2553,18 @@ export const templates = [
     "rating": 4.5,
     "image": "/template-previews/Underground_Bunker_Console.svg",
     "createdAt": "2026-06-06"
+  },
+  {
+    "id": "Digital_Manifesto_Scroll",
+    "title": "Digital Manifesto Scroll",
+    "category": "Portfolio",
+    "colorScheme": "Dark",
+    "layout": "Interactive",
+    "author": "Gurkaran18",
+    "views": 1500,
+    "rating": 5.0,
+    "image": "/template-previews/Digital_Manifesto_Scroll.png",
+    "createdAt": "2026-06-07",
+    "isComplete": true
   }
 ];

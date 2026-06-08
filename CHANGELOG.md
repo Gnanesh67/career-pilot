@@ -1,3 +1,9 @@
+## [1.0.2](https://github.com/Gurkaran18/career-pilot/compare/v1.0.1...v1.0.2) (2026-06-08)
+
+
+### Bug Fixes
+
+* add loading/error feedback to contact form ([cc559ba](https://github.com/Gurkaran18/career-pilot/commit/cc559ba2c8fa0fdf5f963964612a9316e98e5cce))
 # [1.190.0](https://github.com/anurag3407/career-pilot/compare/v1.189.0...v1.190.0) (2026-06-08)
 
 
