@@ -77,6 +77,10 @@ export const getMetrics = () => {
 
 export const clearMetrics = () => {
   if (typeof performance !== "undefined") {
+    // SAFETY: Clear only marks/measures created by this module (tracked in trackedLabels).
+    // Never call performance.clearMarks() or clearMeasures() with no arguments,
+    // as that would wipe all performance entries in the runtime, including entries
+    // from other modules or tests, breaking unrelated telemetry and test assertions.
     if (typeof performance.clearMarks === "function") {
       for (const label of trackedLabels) {
         performance.clearMarks(`${label}-start`);
@@ -91,6 +95,7 @@ export const clearMetrics = () => {
     }
   }
 
+  // Clear internal module state.
   metrics.clear();
   fallbackMarks.clear();
   fallbackMeasures.clear();
