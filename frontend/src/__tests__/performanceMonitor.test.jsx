@@ -43,4 +43,38 @@ describe("performanceMonitor", () => {
 
     expect(Object.keys(getMetrics())).toHaveLength(0);
   });
+
+  test("clears only tracked performance labels", () => {
+    startMeasure("scoped");
+    endMeasure("scoped");
+
+    const originalPerformance = global.performance;
+    const clearMarksSpy = jest.fn();
+    const clearMeasuresSpy = jest.fn();
+
+    Object.defineProperty(global, "performance", {
+      configurable: true,
+      writable: true,
+      value: {
+        clearMarks: clearMarksSpy,
+        clearMeasures: clearMeasuresSpy,
+      },
+    });
+
+    try {
+      clearMetrics();
+
+      expect(clearMarksSpy).toHaveBeenCalledWith("scoped-start");
+      expect(clearMarksSpy).toHaveBeenCalledWith("scoped-end");
+      expect(clearMeasuresSpy).toHaveBeenCalledWith("scoped");
+      expect(clearMarksSpy).not.toHaveBeenCalledWith();
+      expect(clearMeasuresSpy).not.toHaveBeenCalledWith();
+    } finally {
+      Object.defineProperty(global, "performance", {
+        configurable: true,
+        writable: true,
+        value: originalPerformance,
+      });
+    }
+  });
 });

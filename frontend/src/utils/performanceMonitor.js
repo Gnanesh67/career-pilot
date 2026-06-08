@@ -3,6 +3,7 @@
 const metrics = new Map();
 const fallbackMarks = new Map();
 const fallbackMeasures = new Map();
+const trackedLabels = new Set();
 
 export const startMeasure = (label) => {
   try {
@@ -19,6 +20,7 @@ export const startMeasure = (label) => {
     } else {
       fallbackMarks.set(`${label}-start`, performance.now ? performance.now() : Date.now());
     }
+    trackedLabels.add(label);
     return true;
   } catch (error) {
     console.error("Performance monitoring start failed:", error);
@@ -59,6 +61,7 @@ export const endMeasure = (label) => {
 
     if (duration !== null) {
       metrics.set(label, duration);
+      trackedLabels.add(label);
     }
 
     return duration;
@@ -73,17 +76,23 @@ export const getMetrics = () => {
 };
 
 export const clearMetrics = () => {
-  metrics.clear();
-  fallbackMarks.clear();
-  fallbackMeasures.clear();
-
   if (typeof performance !== "undefined") {
     if (typeof performance.clearMarks === "function") {
-      performance.clearMarks();
+      for (const label of trackedLabels) {
+        performance.clearMarks(`${label}-start`);
+        performance.clearMarks(`${label}-end`);
+      }
     }
 
     if (typeof performance.clearMeasures === "function") {
-      performance.clearMeasures();
+      for (const label of trackedLabels) {
+        performance.clearMeasures(label);
+      }
     }
   }
+
+  metrics.clear();
+  fallbackMarks.clear();
+  fallbackMeasures.clear();
+  trackedLabels.clear();
 };
