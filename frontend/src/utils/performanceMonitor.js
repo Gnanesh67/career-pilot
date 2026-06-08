@@ -18,7 +18,7 @@ export const startMeasure = (label) => {
     if (typeof performance.mark === "function") {
       performance.mark(`${label}-start`);
     } else {
-      fallbackMarks.set(`${label}-start`, performance.now ? performance.now() : Date.now());
+      fallbackMarks.set(`${label}-start`, typeof performance.now === "function" ? performance.now() : Date.now());
     }
     trackedLabels.add(label);
     return true;
@@ -52,7 +52,7 @@ export const endMeasure = (label) => {
       duration = latestEntry?.duration ?? null;
     } else {
       const startTime = fallbackMarks.get(startMark);
-      const endTime = performance.now ? performance.now() : Date.now();
+      const endTime = typeof performance.now === "function" ? performance.now() : Date.now();
       duration = typeof startTime === "number" ? Math.max(0, endTime - startTime) : null;
       if (duration !== null) {
         fallbackMeasures.set(label, duration);
