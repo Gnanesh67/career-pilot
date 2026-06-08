@@ -429,6 +429,15 @@ export const templates = [
     "createdAt": "2026-05-31",
     "isComplete": true
   },
+
+  {
+    id: "zine-collage",
+    title: "Zine Collage",
+    category: "Brutalist",
+    description: "An asymmetric, high-contrast scrapbook magazine layout featuring heavy ink borders, rotated clipping frames, and retro label-maker accents.",
+    isComplete: true
+  },
+  
   {
     "id": "Cinematic",
     "title": "Cinematic",
@@ -2544,5 +2553,18 @@ export const templates = [
     "rating": 4.5,
     "image": "/template-previews/Underground_Bunker_Console.svg",
     "createdAt": "2026-06-06"
+  },
+  {
+    "id": "Digital_Manifesto_Scroll",
+    "title": "Digital Manifesto Scroll",
+    "category": "Portfolio",
+    "colorScheme": "Dark",
+    "layout": "Interactive",
+    "author": "Gurkaran18",
+    "views": 1500,
+    "rating": 5.0,
+    "image": "/template-previews/Digital_Manifesto_Scroll.png",
+    "createdAt": "2026-06-07",
+    "isComplete": true
   }
 ];

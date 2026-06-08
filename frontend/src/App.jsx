@@ -111,7 +111,9 @@ import PlanetaryOrbit from './components/portfolio/templates/Planetary_Orbit/ind
 import LowPolyTerrain from './components/portfolio/templates/Low_Poly_Terrain/index.jsx';
 import HighFashion from './components/portfolio/templates/High_Fashion/index.jsx';
 import TypographicWheatpastePosterWall from './components/portfolio/templates/Typographic_Wheatpaste_Poster_Wall/index.jsx';
+import DigitalManifestoScroll from './components/portfolio/templates/Digital_Manifesto_Scroll/index.jsx';
 import TestSocialLinks from './pages/TestSocialLinks';
+import ZineCollage from './components/portfolio/templates/ZineCollage';
 
 function LoadingScreen({ label }) {
   return (
@@ -253,14 +255,13 @@ function AppRoutes() {
 
         
 
-        <Route path="/templates/chatbot" element={<ChatbotPortfolio />} />
-
-        {/* <Route path="/templates/day-night-cycle" element={<DayNightCycle />} /> */}
+               {/* <Route path="/templates/day-night-cycle" element={<DayNightCycle />} /> */}
         <Route path="/templates/rainforest-canopy" element={<RainforestCanopy />} />
         <Route path="/templates/northern-fjords" element={<NorthernFjords />} />
         <Route path="/templates/duotone-bold" element={<DuotoneBold />} />
         <Route path="/templates/chromatic-glitch" element={<ChromaticGlitch />} />
         <Route path="/templates/swiss-typography" element={<SwissTypography />} />
+      
         <Route path="/templates/desert-dunes" element={<DesertDunes />} />
         <Route path="/templates/psychedelic-swirl" element={<PsychedelicSwirl />} />
         <Route path="/templates/memphis-pop" element={<MemphisPop />} />
@@ -272,7 +273,9 @@ function AppRoutes() {
         <Route path="/templates/low-poly-terrain" element={<LowPolyTerrain />} />
         <Route path="/templates/high-fashion" element={<HighFashion />} />
         <Route path="/templates/typographic-wheatpaste-poster-wall" element={<TypographicWheatpastePosterWall />} />
+        <Route path="/templates/digital-manifesto-scroll" element={<DigitalManifestoScroll />} />
 
+        <Route path="/templates/zine-collage" element={<ZineCollage />} />
         <Route path="/templates/chatbot" element={<ChatbotPortfolio />} /> 
         <Route path="/templates/glassmorphism" element={<GlassmorphismTemplate/>} />
         {/* Core Protected Routes */}
