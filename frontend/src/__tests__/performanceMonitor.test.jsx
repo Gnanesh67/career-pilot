@@ -64,11 +64,8 @@ describe("performanceMonitor", () => {
     try {
       clearMetrics();
 
-      expect(clearMarksSpy).toHaveBeenCalledWith("scoped-start");
-      expect(clearMarksSpy).toHaveBeenCalledWith("scoped-end");
-      expect(clearMeasuresSpy).toHaveBeenCalledWith("scoped");
-      expect(clearMarksSpy).not.toHaveBeenCalledWith();
-      expect(clearMeasuresSpy).not.toHaveBeenCalledWith();
+      expect(clearMarksSpy.mock.calls).toEqual([["scoped-start"], ["scoped-end"]]);
+      expect(clearMeasuresSpy.mock.calls).toEqual([["scoped"]]);
     } finally {
       Object.defineProperty(global, "performance", {
         configurable: true,
